@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Plus, Trash2, Save, Image, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -44,7 +43,7 @@ const Admin = () => {
   const addProject = () => {
     if (!newProject.title || !newProject.category || !newProject.description) {
       toast({
-        title: "Error",
+        title: "Missing fields",
         description: "Please fill in all required fields.",
         variant: "destructive",
       });
@@ -59,126 +58,116 @@ const Admin = () => {
 
     setProjects([...projects, project]);
     setNewProject({ title: "", category: "", description: "", image: "" });
-    toast({
-      title: "Success",
-      description: "Project added successfully!",
-    });
+    toast({ title: "Project added" });
   };
 
   const deleteProject = (id: number) => {
     setProjects(projects.filter((p) => p.id !== id));
-    toast({
-      title: "Deleted",
-      description: "Project removed successfully.",
-    });
+    toast({ title: "Project deleted" });
   };
 
   const saveChanges = () => {
-    // In a real app, this would save to a database
-    toast({
-      title: "Saved",
-      description: "All changes have been saved.",
-    });
+    toast({ title: "Changes saved" });
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-muted/30">
       {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-background border-b border-border sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-5 h-5" />
-              <span className="hidden sm:inline">Back to Site</span>
+            <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm">
+              <ArrowLeft className="w-4 h-4" />
+              Back
             </Link>
-            <div className="h-6 w-px bg-border" />
+            <div className="h-5 w-px bg-border" />
             <div className="flex items-center gap-2">
-              <img src={logo} alt="Logo" className="h-8 w-auto" />
-              <span className="font-bold text-primary">Admin Dashboard</span>
+              <img src={logo} alt="Logo" className="h-7 w-auto" />
+              <span className="font-semibold text-sm">Admin</span>
             </div>
           </div>
-          <Button onClick={saveChanges} className="bg-secondary hover:bg-secondary/90">
-            <Save className="w-4 h-4 mr-2" />
-            Save Changes
-          </Button>
+          <button onClick={saveChanges} className="btn-primary text-sm py-2">
+            <Save className="w-4 h-4" />
+            Save
+          </button>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-6 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Add New Project Form */}
+          {/* Add Form */}
           <div className="lg:col-span-1">
-            <div className="glass-card p-6 sticky top-24">
-              <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Plus className="w-5 h-5 text-secondary" />
-                Add New Project
+            <div className="card-elevated sticky top-24">
+              <h2 className="text-lg font-semibold mb-5 flex items-center gap-2">
+                <Plus className="w-4 h-4 text-secondary" />
+                Add Project
               </h2>
               
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Project Title *</label>
+                  <label className="text-sm text-muted-foreground mb-1.5 block">Title</label>
                   <Input
-                    placeholder="e.g., Luxury Hotel"
+                    placeholder="Project name"
                     value={newProject.title}
                     onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
+                    className="bg-background"
                   />
                 </div>
                 
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Category *</label>
+                  <label className="text-sm text-muted-foreground mb-1.5 block">Category</label>
                   <Input
-                    placeholder="e.g., Commercial, Residential"
+                    placeholder="e.g., Commercial"
                     value={newProject.category}
                     onChange={(e) => setNewProject({ ...newProject, category: e.target.value })}
+                    className="bg-background"
                   />
                 </div>
                 
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Image URL</label>
+                  <label className="text-sm text-muted-foreground mb-1.5 block">Image URL</label>
                   <Input
-                    placeholder="https://example.com/image.jpg"
+                    placeholder="https://..."
                     value={newProject.image}
                     onChange={(e) => setNewProject({ ...newProject, image: e.target.value })}
+                    className="bg-background"
                   />
                 </div>
                 
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Description *</label>
+                  <label className="text-sm text-muted-foreground mb-1.5 block">Description</label>
                   <Textarea
-                    placeholder="Describe the project..."
-                    rows={4}
+                    placeholder="Brief description..."
+                    rows={3}
                     value={newProject.description}
                     onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+                    className="bg-background resize-none"
                   />
                 </div>
                 
-                <Button onClick={addProject} className="w-full bg-primary hover:bg-primary/90">
-                  <Plus className="w-4 h-4 mr-2" />
+                <button onClick={addProject} className="btn-primary w-full text-sm">
+                  <Plus className="w-4 h-4" />
                   Add Project
-                </Button>
+                </button>
               </div>
             </div>
           </div>
 
           {/* Projects List */}
           <div className="lg:col-span-2">
-            <h2 className="text-xl font-bold mb-6">
-              Current Projects ({projects.length})
+            <h2 className="text-lg font-semibold mb-5">
+              Projects ({projects.length})
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               {projects.map((project) => (
-                <div key={project.id} className="glass-card p-4 flex gap-4">
-                  <div className="w-32 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-muted">
+                <div key={project.id} className="card-elevated flex gap-4 p-4">
+                  <div className="w-24 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-muted">
                     {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <Image className="w-8 h-8 text-muted-foreground" />
+                        <Image className="w-6 h-6 text-muted-foreground" />
                       </div>
                     )}
                   </div>
@@ -186,19 +175,17 @@ const Admin = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <h3 className="font-semibold truncate">{project.title}</h3>
-                        <span className="text-xs text-secondary font-medium">{project.category}</span>
+                        <h3 className="font-medium text-sm">{project.title}</h3>
+                        <span className="text-xs text-secondary">{project.category}</span>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
+                      <button
+                        className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                         onClick={() => deleteProject(project.id)}
                       >
                         <Trash2 className="w-4 h-4" />
-                      </Button>
+                      </button>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                    <p className="text-muted-foreground text-xs mt-1.5 line-clamp-2">
                       {project.description}
                     </p>
                   </div>
@@ -207,8 +194,8 @@ const Admin = () => {
 
               {projects.length === 0 && (
                 <div className="text-center py-12 text-muted-foreground">
-                  <Image className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>No projects yet. Add your first project!</p>
+                  <Image className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                  <p className="text-sm">No projects yet</p>
                 </div>
               )}
             </div>

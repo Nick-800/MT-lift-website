@@ -66,7 +66,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Location</div>
-                  <div className="font-medium">Cairo, Egypt</div>
+                  <div className="font-medium">Benghazi, Libya</div>
                 </div>
               </div>
             </div>

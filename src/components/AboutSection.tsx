@@ -49,7 +49,7 @@ const AboutSection = () => {
           {/* Right Content - Stats */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-4">
             <div className="card-elevated text-center py-8">
-              <div className="stat-number">500+</div>
+              <div className="stat-number">200+</div>
               <div className="text-muted-foreground text-sm mt-1">Projects Done</div>
             </div>
             <div className="card-elevated text-center py-8">

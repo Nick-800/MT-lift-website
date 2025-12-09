@@ -44,7 +44,9 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Phone</div>
-                  <div className="font-medium">+20 123 456 7890</div>
+                  <div className="font-medium">+218 91 685 8449</div>
+                  <div className="font-medium">+218 92 000 1428</div>
+
                 </div>
               </a>
 
@@ -54,7 +56,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Email</div>
-                  <div className="font-medium">info@elmasar-elevators.com</div>
+                  <div className="font-medium">info@mtlift.ly</div>
                 </div>
               </a>
 
@@ -115,10 +117,8 @@ const ContactSection = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-6 border-t border-border text-center">
-          <p className="text-muted-foreground text-sm">
-            © 2024 El Masar El Thabet. All rights reserved.
-          </p>
+        <div className="border-t border-border/10 mt-12 pt-8 text-center text-muted-foreground text-sm">
+          © 2025 El Masar El Thabet. All rights reserved.
         </div>
       </div>
     </section>

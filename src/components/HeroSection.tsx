@@ -13,7 +13,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           {/* Left Content */}
           <div className="max-w-xl">
             <div className="animate-fade-up">
-              <span className="section-label">Since 2010</span>
+              <span className="section-label">Since 2015</span>
             </div>
 
             <h1 className="section-title animate-fade-up delay-100">
@@ -40,11 +40,11 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
             {/* Stats Row */}
             <div className="flex gap-10 mt-12 pt-8 border-t border-border animate-fade-up delay-400">
               <div>
-                <div className="stat-number">500+</div>
+                <div className="stat-number">200+</div>
                 <div className="text-muted-foreground text-sm mt-1">Installations</div>
               </div>
               <div>
-                <div className="stat-number">15+</div>
+                <div className="stat-number">10+</div>
                 <div className="text-muted-foreground text-sm mt-1">Years</div>
               </div>
               <div>

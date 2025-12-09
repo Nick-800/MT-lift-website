@@ -5,9 +5,10 @@ import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import PartnersSection from "@/components/PartnersSection";
 import ContactSection from "@/components/ContactSection";
 
-const floorLabels = ["Home", "Services", "About", "Projects", "Contact"];
+const floorLabels = ["Home", "Services", "About", "Projects", "Partners", "Contact"];
 
 const Index = () => {
   const [currentFloor, setCurrentFloor] = useState(0);
@@ -29,12 +30,12 @@ const Index = () => {
 
     const handleScroll = () => {
       if (isScrolling.current) return;
-      
+
       const scrollTop = container.scrollTop;
       const sectionHeight = container.clientHeight;
       const newFloor = Math.round(scrollTop / sectionHeight);
-      
-      if (newFloor !== currentFloor && newFloor >= 0 && newFloor < 5) {
+
+      if (newFloor !== currentFloor && newFloor >= 0 && newFloor < 6) {
         setCurrentFloor(newFloor);
       }
     };
@@ -48,11 +49,11 @@ const Index = () => {
       <Navbar currentFloor={currentFloor} onNavigate={navigateToFloor} />
       <FloorIndicator
         currentFloor={currentFloor}
-        totalFloors={5}
+        totalFloors={6}
         onFloorClick={navigateToFloor}
         floorLabels={floorLabels}
       />
-      
+
       <div
         ref={containerRef}
         className="snap-container"
@@ -61,6 +62,7 @@ const Index = () => {
         <ServicesSection />
         <AboutSection />
         <ProjectsSection />
+        <PartnersSection />
         <ContactSection />
       </div>
     </div>

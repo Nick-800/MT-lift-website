@@ -12,7 +12,8 @@ const navItems = [
   { label: "Services", floor: 1 },
   { label: "About", floor: 2 },
   { label: "Projects", floor: 3 },
-  { label: "Contact", floor: 4 },
+  { label: "Partners", floor: 4 },
+  { label: "Contact", floor: 5 },
 ];
 
 const Navbar = ({ currentFloor, onNavigate }: NavbarProps) => {
@@ -32,11 +33,10 @@ const Navbar = ({ currentFloor, onNavigate }: NavbarProps) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-background/98 backdrop-blur-md shadow-sm border-b border-border/50" 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? "bg-background/98 backdrop-blur-md shadow-sm border-b border-border/50"
           : "bg-background/80 backdrop-blur-sm"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-16">
@@ -54,11 +54,10 @@ const Navbar = ({ currentFloor, onNavigate }: NavbarProps) => {
               <button
                 key={item.floor}
                 onClick={() => handleNav(item.floor)}
-                className={`px-4 py-2 text-sm rounded-md transition-all duration-200 ${
-                  currentFloor === item.floor
+                className={`px-4 py-2 text-sm rounded-md transition-all duration-200 ${currentFloor === item.floor
                     ? "text-secondary font-medium bg-secondary/10"
                     : "text-foreground/70 hover:text-foreground hover:bg-muted"
-                }`}
+                  }`}
               >
                 {item.label}
               </button>
@@ -81,11 +80,10 @@ const Navbar = ({ currentFloor, onNavigate }: NavbarProps) => {
               <button
                 key={item.floor}
                 onClick={() => handleNav(item.floor)}
-                className={`block w-full text-left px-4 py-3 text-sm rounded-md transition-colors ${
-                  currentFloor === item.floor
+                className={`block w-full text-left px-4 py-3 text-sm rounded-md transition-colors ${currentFloor === item.floor
                     ? "text-secondary font-medium bg-secondary/10"
                     : "text-foreground/70 hover:text-foreground hover:bg-muted"
-                }`}
+                  }`}
               >
                 {item.label}
               </button>

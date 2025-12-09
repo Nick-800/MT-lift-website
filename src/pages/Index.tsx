@@ -28,20 +28,48 @@ const Index = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
-      if (isScrolling.current) return;
+    // Map to store current visible height of each section
+    const visibleHeights = new Map<Element, number>();
 
-      const scrollTop = container.scrollTop;
-      const sectionHeight = container.clientHeight;
-      const newFloor = Math.round(scrollTop / sectionHeight);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isScrolling.current) return;
 
-      if (newFloor !== currentFloor && newFloor >= 0 && newFloor < 6) {
-        setCurrentFloor(newFloor);
+        // Update visible heights for changed entries
+        entries.forEach((entry) => {
+          visibleHeights.set(entry.target, entry.isIntersecting ? entry.intersectionRect.height : 0);
+        });
+
+        // Find section with largest visible height
+        let maxVisibleHeight = 0;
+        let activeIndex = currentFloor;
+
+        const children = Array.from(container.children);
+
+        children.forEach((child, index) => {
+          const height = visibleHeights.get(child) || 0;
+          if (height > maxVisibleHeight) {
+            maxVisibleHeight = height;
+            activeIndex = index;
+          }
+        });
+
+        // Only update if we have a clearly visible section (avoid flickering during fast scroll)
+        if (maxVisibleHeight > 0 && activeIndex !== currentFloor && activeIndex >= 0 && activeIndex < 6) {
+          setCurrentFloor(activeIndex);
+        }
+      },
+      {
+        root: container,
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // Granular updates
       }
-    };
+    );
 
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
+    Array.from(container.children).forEach((child) => {
+      observer.observe(child);
+    });
+
+    return () => observer.disconnect();
   }, [currentFloor]);
 
   return (

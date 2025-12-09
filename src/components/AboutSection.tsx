@@ -17,19 +17,20 @@ const AboutSection = () => {
           {/* Left Content */}
           <div className="lg:col-span-3">
             <div className="accent-bar" />
-            <span className="section-label">About El Masar El Thabet</span>
+            <span className="section-label">About Fixed Path Elevators & Escalators Co.</span>
             <h2 className="section-title">
               Your trusted partner in vertical transportation
             </h2>
             <div className="space-y-4 mt-6">
               <p className="text-muted-foreground leading-relaxed">
-                For over 15 years, El Masar El Thabet has been a leading name in the 
-                elevator industry. We specialize in providing top-tier elevator solutions 
-                that combine innovation, safety, and reliability.
+                In a world witnessing rapid urban development and a growing demand for safe and
+                intelligent vertical transportation solutions, <strong className="text-foreground">Fixed Path Elevators & Escalators Co.</strong> has emerged as a distinguished provider.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Our commitment to excellence has made us the preferred choice for 
-                elevator installation and maintenance across the region.
+                Our journey began in Sweden in 2015, where we gained extensive hands-on experience working with leading global companies such
+                as KONE and Schindler. In 2019, we expanded into the Libyan market, establishing
+                our headquarters in Libya and bringing with us European technology and international
+                standards.
               </p>
             </div>
 
@@ -56,7 +57,7 @@ const AboutSection = () => {
               <div className="text-muted-foreground text-sm mt-1">Happy Clients</div>
             </div>
             <div className="card-elevated text-center py-8">
-              <div className="stat-number">15+</div>
+              <div className="stat-number">10+</div>
               <div className="text-muted-foreground text-sm mt-1">Years Active</div>
             </div>
             <div className="card-elevated text-center py-8">
